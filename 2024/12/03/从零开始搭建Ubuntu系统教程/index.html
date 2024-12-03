@@ -19,37 +19,29 @@
   <meta name="author" content="AnTi">
   <meta name="keywords" content="">
   
-    <meta name="description" content="微信小程序抓包教程准备工作软件安装：  Charles（30 天试用，应该有破解版） Burp Suite（下载社区版应该不要钱）  然后看一下电脑端小程序能不能正常查询水电费余额： Charles软件配置安装证书 安装到受信任的根证书颁发机构：   配置代理  SSL 代理配置  * 是代表抓取任意端口和域名，如果只抓取固定的端口 or 域名可自行设置。 数据包代理配置将数据包代理转发到Burp">
+    <meta name="description" content="由于最近新购入联想小新Pro16，所以考虑把之前的笔记本做成Ubuntu系统，这样方便利用双系统进行工作。本文主要介绍了系统的安装以及后续一些必备软件的安装，以后遇到此类情况，可以快速响应。 安装Ubuntu系统首先，需要我们去官网下载镜像文件，但是由于官方的服务器搭建在境外，因此我们更倾向于使用国内镜像进行下载，比如清华大学镜像，一般来说，比较常用的是16.04和18.04版本，这里我选择了18">
 <meta property="og:type" content="article">
-<meta property="og:title" content="微信小程序抓包教程">
-<meta property="og:url" content="http://example.com/2024/12/02/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E6%8A%93%E5%8C%85%E6%95%99%E7%A8%8B/index.html">
+<meta property="og:title" content="从零开始搭建Ubuntu系统教程">
+<meta property="og:url" content="http://example.com/2024/12/03/%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E6%90%AD%E5%BB%BAUbuntu%E7%B3%BB%E7%BB%9F%E6%95%99%E7%A8%8B/index.html">
 <meta property="og:site_name" content="AnTi的博客">
-<meta property="og:description" content="微信小程序抓包教程准备工作软件安装：  Charles（30 天试用，应该有破解版） Burp Suite（下载社区版应该不要钱）  然后看一下电脑端小程序能不能正常查询水电费余额： Charles软件配置安装证书 安装到受信任的根证书颁发机构：   配置代理  SSL 代理配置  * 是代表抓取任意端口和域名，如果只抓取固定的端口 or 域名可自行设置。 数据包代理配置将数据包代理转发到Burp">
+<meta property="og:description" content="由于最近新购入联想小新Pro16，所以考虑把之前的笔记本做成Ubuntu系统，这样方便利用双系统进行工作。本文主要介绍了系统的安装以及后续一些必备软件的安装，以后遇到此类情况，可以快速响应。 安装Ubuntu系统首先，需要我们去官网下载镜像文件，但是由于官方的服务器搭建在境外，因此我们更倾向于使用国内镜像进行下载，比如清华大学镜像，一般来说，比较常用的是16.04和18.04版本，这里我选择了18">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://example.com/images/1202_01.jpg">
-<meta property="og:image" content="http://example.com/images/1202_02.jpg">
-<meta property="og:image" content="http://example.com/images/1202_03.jpg">
-<meta property="og:image" content="http://example.com/images/1202_04.jpg">
-<meta property="og:image" content="http://example.com/images/1202_05.jpg">
-<meta property="og:image" content="http://example.com/images/1202_06.jpg">
-<meta property="og:image" content="http://example.com/images/1202_07.jpg">
-<meta property="og:image" content="http://example.com/images/1202_08.jpg">
-<meta property="og:image" content="http://example.com/images/1202_09.jpg">
-<meta property="og:image" content="http://example.com/images/1202_10.jpg">
-<meta property="og:image" content="http://example.com/images/1202_11.jpg">
-<meta property="og:image" content="http://example.com/images/1202_12.jpg">
-<meta property="og:image" content="http://example.com/images/1202_13.jpg">
-<meta property="og:image" content="http://example.com/images/1202_14.jpg">
-<meta property="article:published_time" content="2024-12-02T06:33:18.000Z">
-<meta property="article:modified_time" content="2024-12-02T07:39:48.083Z">
+<meta property="og:image" content="http://example.com/images/1203_01.jpg">
+<meta property="og:image" content="http://example.com/images/1203_02.jpg">
+<meta property="og:image" content="http://example.com/images/1203_03.jpg">
+<meta property="og:image" content="http://example.com/images/1203_04.jpg">
+<meta property="og:image" content="http://example.com/images/1203_05.jpg">
+<meta property="og:image" content="http://example.com/images/1203_06.jpg">
+<meta property="article:published_time" content="2024-12-03T05:54:18.000Z">
+<meta property="article:modified_time" content="2024-12-03T06:01:23.671Z">
 <meta property="article:author" content="AnTi">
 <meta property="article:tag" content="解决方案">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="http://example.com/images/1202_01.jpg">
+<meta name="twitter:image" content="http://example.com/images/1203_01.jpg">
   
   
   
-  <title>微信小程序抓包教程 - AnTi的博客</title>
+  <title>从零开始搭建Ubuntu系统教程 - AnTi的博客</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -255,7 +247,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="微信小程序抓包教程"></span>
+            <span id="subtitle" data-typed-text="从零开始搭建Ubuntu系统教程"></span>
           
         </div>
 
@@ -266,8 +258,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-12-02 14:33" pubdate>
-          2024年12月2日 下午
+        <time datetime="2024-12-03 13:54" pubdate>
+          2024年12月3日 下午
         </time>
       </span>
     
@@ -278,7 +270,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          205 字
+          1.2k 字
         
       </span>
     
@@ -289,7 +281,7 @@
         
         
         
-          2 分钟
+          11 分钟
         
       </span>
     
@@ -335,12 +327,12 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">微信小程序抓包教程</h1>
+            <h1 id="seo-header">从零开始搭建Ubuntu系统教程</h1>
             
               <p id="updated-time" class="note note-info" style="display: none">
                 
                   
-                    本文最后更新于 2024-12-02T15:39:48+08:00
+                    本文最后更新于 2024-12-03T14:01:23+08:00
                   
                   
 
@@ -350,31 +342,47 @@
             
               <div class="markdown-body">
                 
-                <h1 id="微信小程序抓包教程"><a href="#微信小程序抓包教程" class="headerlink" title="微信小程序抓包教程"></a>微信小程序抓包教程</h1><h2 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h2><p>软件安装：</p>
-<ul>
-<li><a target="_blank" rel="noopener" href="https://blog.uuanqin.top/go.html?u=aHR0cHM6Ly93d3cuY2hhcmxlc3Byb3h5LmNvbS9sYXRlc3QtcmVsZWFzZS9kb3dubG9hZC5kbw==">Charles</a>（30 天试用，应该有破解版）</li>
-<li><a target="_blank" rel="noopener" href="https://blog.uuanqin.top/go.html?u=aHR0cHM6Ly9wb3J0c3dpZ2dlci5uZXQvYnVycC9yZWxlYXNlcy9wcm9mZXNzaW9uYWwtY29tbXVuaXR5LTIwMjQtMi0xLTU=">Burp Suite</a>（下载社区版应该不要钱）</li>
+                <p>由于最近新购入联想小新Pro16，所以考虑把之前的笔记本做成Ubuntu系统，这样方便利用双系统进行工作。<br>本文主要介绍了系统的安装以及后续一些必备软件的安装，以后遇到此类情况，可以快速响应。</p>
+<h1 id="安装Ubuntu系统"><a href="#安装Ubuntu系统" class="headerlink" title="安装Ubuntu系统"></a>安装Ubuntu系统</h1><p>首先，需要我们去<a target="_blank" rel="noopener" href="https://ubuntu.com/download">官网</a>下载镜像文件，但是由于官方的服务器搭建在境外，因此我们更倾向于使用国内镜像进行下载，比如<a target="_blank" rel="noopener" href="https://mirrors.tuna.tsinghua.edu.cn/ubuntu-releases/18.04/">清华大学镜像</a>，一般来说，比较常用的是16.04和18.04版本，这里我选择了18.04版本，注意最好是64位，之前安装了32位，后来又重装了。<br><img src="/images/1203_01.jpg" srcset="/img/loading.gif" lazyload><br>大概等个十分钟，就可以安装完成。</p>
+<h1 id="制作启动盘"><a href="#制作启动盘" class="headerlink" title="制作启动盘"></a>制作启动盘</h1><p>做一个启动盘，这里使用的Rufus启动盘，制作很简单，首先去网上下载一个<a target="_blank" rel="noopener" href="https://rufus.ie/zh/">Rufus安装包</a>,安装后打开，在‘‘引导类型选择’’这栏选择自己之前下载的ubuntu的ios镜像文件，再点‘‘确定’’。注意，<strong>这步操作会将U盘格式化</strong>，如果U盘里面有重要的文件，记得提前备份。</p>
+<p>完后进行第二步操作后，会有一个‘‘状态’’的进度条，当进度条进行到100%后启动盘就制作完成了。<br><img src="/images/1203_02.jpg" srcset="/img/loading.gif" lazyload></p>
+<h1 id="进入BIOS"><a href="#进入BIOS" class="headerlink" title="进入BIOS"></a>进入BIOS</h1><p>我的电脑是联想G50-80，进入BIOS的方式是FN+F2，不同电脑进入方式大同小异，百度一下即可。</p>
+<h1 id="安装Ubuntu"><a href="#安装Ubuntu" class="headerlink" title="安装Ubuntu"></a>安装Ubuntu</h1><p>今日BIOS之后，选择安装Ubuntu，选择好对应的配置，就可以了，重启机器，一般就完成了安装。但是，我在安装的过程中出现了acpi error、花屏等问题，我是按住e键，就可以直接跳过，然后顺利完成安装。</p>
+<h1 id="Clash-for-Windows"><a href="#Clash-for-Windows" class="headerlink" title="Clash for Windows"></a>Clash for Windows</h1><p>第一步，肯定是要把工具搭建起来，网上看了下，clash应该属于最简单的方式了。</p>
+<p>clash是近期比较著名的软件，其便捷、多平台的特点吸引了大量的用户。clash有三种Clash For Windows 、Clash For Linux和clash for android 三个主要的分支，大家在使用时，可能会将分支Clash For Windows中的windows理解成windows系统下专用的分支。其实在这里，windows指的是带GUI界面的clash软件。在ubuntu中，相比较于安装Clash For Linux，Clash For Windows更为方便和直观，下面就来介绍Clash for Windows 软件在ubuntu下的安装过程。</p>
+<h2 id="下载"><a href="#下载" class="headerlink" title="下载"></a>下载</h2><p>首先从GitHub上下载clash<br><a target="_blank" rel="noopener" href="https://github.com/Fndroid/clash_for_windows_pkg/releases">下载链接</a><br>下载Clash.for.Windows-0.18.8-x64-linux.tar.gz（一般个人电脑请选择x64-linux）<br><img src="/images/1203_03.jpg" srcset="/img/loading.gif" lazyload></p>
+<h2 id="解压"><a href="#解压" class="headerlink" title="解压"></a>解压</h2><p>进入到对应的文件夹，tar -zxvf 解压文件，进入到解压后的文件夹，在当前终端运行命令 .&#x2F;cfw  就可以打开GUI界面了。</p>
+<h2 id="设置代理"><a href="#设置代理" class="headerlink" title="设置代理"></a>设置代理</h2><p>打开设置-网络-网络代理（齿轮），将http&#x2F;https代理指向本机的clash默认端口7890（clash界面启动页可以修改Port）<br><img src="/images/1203_04.jpg" srcset="/img/loading.gif" lazyload></p>
+<h2 id="设置订阅链接"><a href="#设置订阅链接" class="headerlink" title="设置订阅链接"></a>设置订阅链接</h2><p>从服务商处获取订阅链接，填入clash,选好节点即可<br><img src="/images/1203_05.jpg" srcset="/img/loading.gif" lazyload></p>
+<h1 id="xshell连接本地Ubuntu"><a href="#xshell连接本地Ubuntu" class="headerlink" title="xshell连接本地Ubuntu"></a>xshell连接本地Ubuntu</h1><p>由于处在同一局域网下，来回跑比较麻烦，就直接在window连接ubuntu进行操作了，配置如下。</p>
+<p>Ubuntu 下安装 OpenSSH Server 是无比轻松的一件事情，需要的命令只有一条：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> apt-get install openssh-server <span class="hljs-comment">##安装ssh服务</span><br></code></pre></td></tr></table></figure>
+<p>查询ssh是否启动</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">ps -e | grep ssh <span class="hljs-comment">##查询ssh进程是否启动成功</span><br></code></pre></td></tr></table></figure>
+<p>如果只有ssh-agent那ssh-server还没有启动，需要&#x2F;etc&#x2F;init.d&#x2F;ssh start，如果看到sshd那说明ssh-server已经启动了。<br>ssh-server配置文件位于&#x2F; etc&#x2F;ssh&#x2F;sshd_config，在这里可以定义SSH的服务端口，默认端口是22，你可以自己定义成其他端口号，如23。然后重启SSH服务：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> /etc/init.d/ssh resart <span class="hljs-comment">##重新启动ssh服务</span><br></code></pre></td></tr></table></figure>
+<p>现在Linux端的ssh已经安装完成了,可以在Windows上使用远程连接工具连接了，我们使用ifconfig命令查看下ip地址，在xshell里面连接即可。<br><img src="/images/1203_06.jpg" srcset="/img/loading.gif" lazyload></p>
+<h1 id="chrome下载"><a href="#chrome下载" class="headerlink" title="chrome下载"></a>chrome下载</h1><p>使用wget来下载 Google Chrome .deb 软件包：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb<br></code></pre></td></tr></table></figure>
+<p>在 Ubuntu 系统上安装软件包需要管理员权限。以 sudo 用户身份在你的系统上运行下面的命令来安装 Chrome .deb软件包：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> apt install ./google-chrome-stable_current_amd64.deb<br></code></pre></td></tr></table></figure>
+<p>在被提示时，输入你的密码，安装将会开始。</p>
+<p>此时，你已经在你的 Ubuntu 系统上安装好了 Chrome。</p>
+<p>在活动搜索栏输入”Google Chrome”，并且点击图标，启动这个应用。</p>
+<h1 id="卸载FireFox"><a href="#卸载FireFox" class="headerlink" title="卸载FireFox"></a>卸载FireFox</h1><p>查看已安装的火狐浏览器及其扩展：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">dpkg --get-selections | grep firefox<br></code></pre></td></tr></table></figure>
+<p>卸载软件：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> apt-get purge firefox   firefox-globalmenu  firefox-gnome-support   firefox-locale-en   firefox-locale-zh-hans<br></code></pre></td></tr></table></figure>
+
+<p>后面有别的软件或者环境搭建，还会继续补充，先写到这里。</p>
+<h1 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h1><ul>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_44023658/article/details/105197092">https://blog.csdn.net/weixin_44023658/article/details/105197092</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.cxyzjd.com/article/weixin_43455581/109462403">https://www.cxyzjd.com/article/weixin_43455581/109462403</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.cnblogs.com/Jiang13537/p/15571504.html">https://www.cnblogs.com/Jiang13537/p/15571504.html</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_27749859/article/details/79006469">https://blog.csdn.net/qq_27749859/article/details/79006469</a></li>
+<li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/137114100">https://zhuanlan.zhihu.com/p/137114100</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/Jugger_Am/article/details/83420273">https://blog.csdn.net/Jugger_Am/article/details/83420273</a></li>
 </ul>
-<p>然后看一下电脑端小程序能不能正常查询水电费余额：</p>
-<h2 id="Charles软件配置"><a href="#Charles软件配置" class="headerlink" title="Charles软件配置"></a>Charles软件配置</h2><h3 id="安装证书"><a href="#安装证书" class="headerlink" title="安装证书"></a>安装证书</h3><p><img src="/images/1202_01.jpg" srcset="/img/loading.gif" lazyload></p>
-<p>安装到受信任的根证书颁发机构：</p>
-<p><img src="/images/1202_02.jpg" srcset="/img/loading.gif" lazyload></p>
-<p><img src="/images/1202_03.jpg" srcset="/img/loading.gif" lazyload></p>
-<h3 id="配置代理"><a href="#配置代理" class="headerlink" title="配置代理"></a>配置代理</h3><p><img src="/images/1202_04.jpg" srcset="/img/loading.gif" lazyload></p>
-<p><img src="/images/1202_05.jpg" srcset="/img/loading.gif" lazyload></p>
-<h3 id="SSL-代理配置"><a href="#SSL-代理配置" class="headerlink" title="SSL 代理配置"></a>SSL 代理配置</h3><p><img src="/images/1202_06.jpg" srcset="/img/loading.gif" lazyload></p>
-<p><img src="/images/1202_07.jpg" srcset="/img/loading.gif" lazyload></p>
-<p><code>*</code> 是代表抓取任意端口和域名，如果只抓取固定的端口 or 域名可自行设置。</p>
-<h3 id="数据包代理配置"><a href="#数据包代理配置" class="headerlink" title="数据包代理配置"></a>数据包代理配置</h3><p>将数据包代理转发到BurpSuite中</p>
-<p><img src="/images/1202_08.jpg" srcset="/img/loading.gif" lazyload></p>
-<p><img src="/images/1202_09.jpg" srcset="/img/loading.gif" lazyload></p>
-<p>注意，Web Proxy（HTTP）和 Secure Web Peoxy（HTTPS）都需要填写 127.0.0.1 以及端口（这里填的都是 8080），这和后续配置 BurpSuite 代理的端口一致。</p>
-<h2 id="Burp-Suite-软件配置"><a href="#Burp-Suite-软件配置" class="headerlink" title="Burp Suite 软件配置"></a>Burp Suite 软件配置</h2><p><img src="/images/1202_10.jpg" srcset="/img/loading.gif" lazyload></p>
-<p><img src="/images/1202_11.jpg" srcset="/img/loading.gif" lazyload></p>
-<p><img src="/images/1202_12.jpg" srcset="/img/loading.gif" lazyload></p>
-<p>接下来你就可以在拦截历史中抓到包了</p>
-<p><img src="/images/1202_13.jpg" srcset="/img/loading.gif" lazyload></p>
-<p><img src="/images/1202_14.jpg" srcset="/img/loading.gif" lazyload></p>
 
                 
               </div>
@@ -420,8 +428,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>微信小程序抓包教程</div>
-      <div>http://example.com/2024/12/02/微信小程序抓包教程/</div>
+      <div>从零开始搭建Ubuntu系统教程</div>
+      <div>http://example.com/2024/12/03/从零开始搭建Ubuntu系统教程/</div>
     </div>
     <div class="license-meta">
       
@@ -433,7 +441,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2024年12月2日</div>
+          <div>2024年12月3日</div>
         </div>
       
       
@@ -465,18 +473,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2024/12/03/%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E6%90%AD%E5%BB%BAUbuntu%E7%B3%BB%E7%BB%9F%E6%95%99%E7%A8%8B/" title="从零开始搭建Ubuntu系统教程">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">从零开始搭建Ubuntu系统教程</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2024/11/29/2024%E5%B9%B4%E5%B9%B4%E7%BB%88%E5%9B%9E%E9%A1%BE%E5%92%8C2025%E5%B9%B4%E5%B1%95%E6%9C%9B%E2%80%94%E2%80%94%E5%AF%B9%E5%86%B2%E9%A3%8E%E9%99%A9VS%E8%BD%AF%E7%9D%80%E9%99%86/" title="2024年年终回顾和2025年展望——对冲风险VS软着陆">
-                        <span class="hidden-mobile">2024年年终回顾和2025年展望——对冲风险VS软着陆</span>
+                      <a href="/2024/12/02/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E6%8A%93%E5%8C%85%E6%95%99%E7%A8%8B/" title="微信小程序抓包教程">
+                        <span class="hidden-mobile">微信小程序抓包教程</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
