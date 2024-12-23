@@ -1,0 +1,949 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="AnTi">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="安卓APP-HTTPS抓包Frida Hook教程本机环境 windows 11 bluestacks 5.11.56.1003 p64 adb 31.0.2 Root Checker 6.5.3 wireshark 4.0.5 frida 16.5.9 jadx-gui 1.4.7  环境搭建bluestacks 环境搭建目前Android模拟器竞品很多，选择Bluestacks 5是因为它能和">
+<meta property="og:type" content="article">
+<meta property="og:title" content="安卓APP-HTTPS抓包Frida Hook教程">
+<meta property="og:url" content="http://example.com/2024/12/23/%E5%AE%89%E5%8D%93APP-HTTPS%E6%8A%93%E5%8C%85Frida%20Hook%E6%95%99%E7%A8%8B/index.html">
+<meta property="og:site_name" content="AnTi的博客">
+<meta property="og:description" content="安卓APP-HTTPS抓包Frida Hook教程本机环境 windows 11 bluestacks 5.11.56.1003 p64 adb 31.0.2 Root Checker 6.5.3 wireshark 4.0.5 frida 16.5.9 jadx-gui 1.4.7  环境搭建bluestacks 环境搭建目前Android模拟器竞品很多，选择Bluestacks 5是因为它能和">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/images/1203_01.jpg">
+<meta property="og:image" content="http://example.com/images/1203_02.jpg">
+<meta property="og:image" content="http://example.com/images/1203_03.jpg">
+<meta property="og:image" content="http://example.com/images/1203_04.jpg">
+<meta property="og:image" content="http://example.com/images/1203_05.jpg">
+<meta property="og:image" content="http://example.com/images/1203_06.jpg">
+<meta property="og:image" content="http://example.com/images/1203_07.jpg">
+<meta property="og:image" content="http://example.com/images/1203_08.jpg">
+<meta property="og:image" content="http://example.com/images/1203_09.jpg">
+<meta property="og:image" content="http://example.com/images/1203_10.jpg">
+<meta property="og:image" content="http://example.com/images/1203_11.jpg">
+<meta property="og:image" content="https://ahui.blog/wp-content/uploads/2024/10/image-20241006012501305.png">
+<meta property="og:image" content="https://ahui.blog/wp-content/uploads/2024/10/image-20241006012544789.png">
+<meta property="og:image" content="http://example.com/images/1203_14.jpg">
+<meta property="og:image" content="http://example.com/images/1203_15.jpg">
+<meta property="og:image" content="https://ahui.blog/wp-content/uploads/2024/10/post-540-670177c858f0e.">
+<meta property="og:image" content="https://ahui.blog/wp-content/uploads/2024/10/post-540-670177c858f0e.">
+<meta property="og:image" content="https://ahui.blog/wp-content/uploads/2024/10/post-540-670177c858f0e.">
+<meta property="og:image" content="https://ahui.blog/wp-content/uploads/2024/10/post-540-670177c858f0e.">
+<meta property="og:image" content="https://ahui.blog/wp-content/uploads/2024/10/post-540-670177c858f0e.">
+<meta property="og:image" content="https://ahui.blog/wp-content/uploads/2024/10/post-540-670177c858f0e.">
+<meta property="article:published_time" content="2024-12-23T06:59:18.000Z">
+<meta property="article:modified_time" content="2024-12-23T07:12:32.430Z">
+<meta property="article:author" content="AnTi">
+<meta property="article:tag" content="抓包">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://example.com/images/1203_01.jpg">
+  
+  
+  
+  <title>安卓APP-HTTPS抓包Frida Hook教程 - AnTi的博客</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":"19265bb224b29a76c4c4e42c1bac4827","google":{"measurement_id":"G-0JQX7KW708"},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":"h4axqmHCD027mddotZDIonWk-gzGzoHsz","app_key":"gGx3TzvrsJWwSRvuNxrnFIHV","server_url":"https://vuphjw5j.lc-cn-n1-shared.com","path":"window.location.pathname","ignore_local":true},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+    <!-- Baidu Analytics -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        var _hmt = _hmt || [];
+        (function() {
+          var hm = document.createElement("script");
+          hm.src = "https://hm.baidu.com/hm.js?19265bb224b29a76c4c4e42c1bac4827";
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(hm, s);
+        })();
+      }
+    </script>
+  
+
+  
+    <!-- Google tag (gtag.js) -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        Fluid.utils.createScript("https://www.googletagmanager.com/gtag/js?id=G-0JQX7KW708", function() {
+          window.dataLayer = window.dataLayer || [];
+          function gtag() {
+            dataLayer.push(arguments);
+          }
+          gtag('js', new Date());
+          gtag('config', 'G-0JQX7KW708');
+        });
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>AnTi</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/three_bp.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="安卓APP-HTTPS抓包Frida Hook教程"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-12-23 14:59" pubdate>
+          2024年12月23日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1.6k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          14 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> 次
+        </span>
+        
+      
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">安卓APP-HTTPS抓包Frida Hook教程</h1>
+            
+              <p id="updated-time" class="note note-info" style="display: none">
+                
+                  
+                    本文最后更新于 2024-12-23T15:12:32+08:00
+                  
+                  
+
+                
+              </p>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="安卓APP-HTTPS抓包Frida-Hook教程"><a href="#安卓APP-HTTPS抓包Frida-Hook教程" class="headerlink" title="安卓APP-HTTPS抓包Frida Hook教程"></a>安卓APP-HTTPS抓包Frida Hook教程</h1><h2 id="本机环境"><a href="#本机环境" class="headerlink" title="本机环境"></a>本机环境</h2><ul>
+<li>windows 11</li>
+<li>bluestacks 5.11.56.1003 p64</li>
+<li>adb 31.0.2</li>
+<li>Root Checker 6.5.3</li>
+<li>wireshark 4.0.5</li>
+<li>frida 16.5.9</li>
+<li>jadx-gui 1.4.7</li>
+</ul>
+<h2 id="环境搭建"><a href="#环境搭建" class="headerlink" title="环境搭建"></a>环境搭建</h2><h3 id="bluestacks-环境搭建"><a href="#bluestacks-环境搭建" class="headerlink" title="bluestacks 环境搭建"></a>bluestacks 环境搭建</h3><p>目前Android模拟器竞品很多，选择Bluestacks <strong>5</strong>是因为它能和windows的hyper-v完美兼容，root过程也相对简单。</p>
+<p>下载地址：<a target="_blank" rel="noopener" href="https://www.bluestacks.com/download.html">https://www.bluestacks.com/download.html</a></p>
+<p><strong>首先需要root Bluestacks环境</strong>。</p>
+<ol>
+<li><p>下载安装Bluestacks。</p>
+</li>
+<li><p>运行Bluestacks Multi-instance Manager，发现默认安装的版本为Android Pie 64bit版本，即Android 9.0。此时退出bluestack所有程序。</p>
+<p><img src="/images/1203_01.jpg" srcset="/img/loading.gif" lazyload></p>
+</li>
+<li><p>关闭bluestack后编辑bluestacks配置文件， <code>%programdata%\BlueStacks_nxt\bluestacks.conf</code></p>
+<p><img src="/images/1203_02.jpg" srcset="/img/loading.gif" lazyload></p>
+</li>
+<li><p>在配置文件中查找root关键词，对应值修改为1，共两处。</p>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs ini"><span class="hljs-attr">bst.feature.rooting</span>=<span class="hljs-string">&quot;1&quot;</span><br><span class="hljs-attr">bst.instance.Pie64.enable_root_access</span>=<span class="hljs-string">&quot;1&quot;</span><br></code></pre></td></tr></table></figure>
+
+<p><img src="/images/1203_03.jpg" srcset="/img/loading.gif" lazyload></p>
+</li>
+<li><p>启动bluestack模拟器，安装 <code>Root Checker</code> APP，点击验证root，即可发现root已成功。</p>
+<p><img src="/images/1203_04.jpg" srcset="/img/loading.gif" lazyload></p>
+</li>
+</ol>
+<p><strong>打开 adb调试</strong></p>
+<p>1.bluestack设置-高级中打开Adb调试，并记录下端口</p>
+<p><img src="/images/1203_05.jpg" srcset="/img/loading.gif" lazyload></p>
+<p>2.打开主机命令行，运行 <code>adb connect localhost:6652</code>，端口号修改为上一步的端口号，即可连接。再运行<code>adb devices</code>，如有对应设备则连接成功。</p>
+<p>3.进入<code>adb shell</code>，执行su进入root权限，命令行标识由<code>$</code>变为<code>#</code>，即表示adb 进入root权限成功。</p>
+<p><img src="/images/1203_06.jpg" srcset="/img/loading.gif" lazyload></p>
+<h3 id="frida环境搭建"><a href="#frida环境搭建" class="headerlink" title="frida环境搭建"></a>frida环境搭建</h3><p>frida是大名鼎鼎的动态分析的hook神器，用它可以直接访问修改二进制的内存、函数和对象，非常方便。它对于Android的支持也是很完美。</p>
+<p>frida的运行采用C&#x2F;S架构，客户端为电脑端的开发环境，服务器端为Android，均需对应部署搭建。</p>
+<p><strong>客户端环境搭建(Windows)</strong></p>
+<p>firda客户端基于python3开发，因此首先需要配置好python3的运行环境，然后执行 <code>pip install frida-tools</code>即可完成安装。运行 <code>frida --version</code>可验证frida版本。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs python">(py3) PS E:\TEMP\damai&gt; frida --version<br><br><span class="hljs-number">16.5</span><span class="hljs-number">.9</span><br></code></pre></td></tr></table></figure>
+
+<p><strong>服务器 环境搭建(Android)</strong></p>
+<p>环境搭建第二步是在Android模拟器中运行frida-server。这样可以让Frida通过ADB&#x2F;USB调试与我们的Android模拟器连接。</p>
+<p>1.下载frida-server<br>最新的frida-server可以从 <a target="_blank" rel="noopener" href="https://github.com/frida/frida/releases">https://github.com/frida/frida/releases</a> 下载。请注意下载与设备匹配的架构。如果您的模拟器是x86_64，请下载相应版本的frida-server。本文使用的版本为 frida-server-16.5.9-android-x86_64.xz</p>
+<p><img src="/images/1203_07.jpg" srcset="/img/loading.gif" lazyload></p>
+<p>2.传入Android模拟器。</p>
+<p>将下载后的.xz文件解压重新命名为<code>frida-server</code>，将<code>frida-server</code>传入Android模拟器</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">adb push frida-server /data/local/tmp/<br></code></pre></td></tr></table></figure>
+
+<p>3.运行 frida-server</p>
+<p>使用adb root以root模式重新启动ADB，并通过adb shell重新进入shell的访问。进入shell后，进入我们放置frida-server的目录并为其授予执行权限：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">cd</span> /data/local/tmp/frida-server<br><span class="hljs-built_in">chmod</span> +x frida-server-16.5.9-android-x86_64<br></code></pre></td></tr></table></figure>
+
+<p>执行：<code>./frida-server-16.5.9-android-x86_64</code>，运行frida-server，并保持本shell窗口开启。</p>
+<p>4.测试是否连接成功</p>
+<p>在window端运行frida-ps命令</p>
+<p><img src="/images/1203_08.jpg" srcset="/img/loading.gif" lazyload></p>
+<p>看到一堆熟悉的Android进程，表示连接成功。</p>
+<p>5.转发frida-server端口 (可选)</p>
+<p>frida-server跑在Android端，frida需要通过连接frida-server。上一步使用adb的方式连接，frida认为是USB模式，需要<code>-U</code>命令。frida也支持依赖端口的远程连接模式，在某些场景下更加灵活。可以通过端口转发的方式实现此功能。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">adb forward tcp:27042 tcp:27042<br>adb forward tcp:27043 tcp:27043<br></code></pre></td></tr></table></figure>
+
+<p>27042是用于与frida-server通信的默认端口号,之后的每个端口对应每个注入的进程，检查27042端口可检测 Frida 是否存在。</p>
+<h2 id="抓包流程"><a href="#抓包流程" class="headerlink" title="抓包流程"></a>抓包流程</h2><p>本章节将介绍用tcpdump+frida+wireshark实现Android的全流量抓包，能实现https解密。</p>
+<p>惯用的Android抓包手段是用fiddler&#x2F;burpsuite&#x2F;mitmproxy搭建代理服务器，设置Android代理服务器并用中间人劫持的方式获取http协议流量的内容，上述的抓包方式只能抓到http协议层以上的流量，这次我们来点不一样的，用tcpdump+frida+wireshark实现Android的全流量抓包，能实现https解密。</p>
+<h3 id="抓包及https解密方法"><a href="#抓包及https解密方法" class="headerlink" title="抓包及https解密方法"></a>抓包及https解密方法</h3><p><strong>1. 搞定tcpdump</strong></p>
+<p>本文基于termux安装使用tcpdump，首先安装termux apk。打开termux运行</p>
+<p>下载地址：<a target="_blank" rel="noopener" href="https://f-droid.org/en/packages/com.termux/">https://f-droid.org/en/packages/com.termux/</a></p>
+<ul>
+<li><p>挂载存储</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs bash">termux-setup-storage<br><span class="hljs-comment">## 会弹出授权框，点允许</span><br><span class="hljs-built_in">ls</span> ~/storage/<br><span class="hljs-comment">## 如果出现dcim, downloads等目录，即表示成功</span><br></code></pre></td></tr></table></figure>
+
+<ul>
+<li><p>安装tcpdump</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">pkg install root-repo<br>pkg install <span class="hljs-built_in">sudo</span> tcpdump<br></code></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p>运行抓包</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> tcpdump -i any -s 0 -w ~/storage/downloads/capture.pcap<br></code></pre></td></tr></table></figure>
+</li>
+<li><p>tcpdump 成功截图</p>
+<p><img src="/images/1203_09.jpg" srcset="/img/loading.gif" lazyload></p>
+</li>
+</ul>
+<p>之后就可以把downloads目录下的抓包文件拷贝到电脑上，用wireshark打开做进一步分析。</p>
+<p><strong>2. 解密https流量</strong></p>
+<p>wireshark解密技术的重点在于拿到客户端通信的密钥日志文件(ssl key log)，像下面这种：</p>
+<p><img src="/images/1203_10.jpg" srcset="/img/loading.gif" lazyload></p>
+<p>在Android中实现抓取ssl key log需要hook系统的SSL相关函数，可以用frida实现。</p>
+<ul>
+<li><p>首先将下面的hook代码保存为<code>sslkeyfilelog.js</code></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">// sslkeyfilelog.js</span><br><span class="hljs-keyword">function</span> <span class="hljs-title function_">startTLSKeyLogger</span>(<span class="hljs-params">SSL_CTX_new, SSL_CTX_set_keylog_callback</span>) &#123;<br>    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;start----&quot;</span>)<br>    <span class="hljs-keyword">function</span> <span class="hljs-title function_">keyLogger</span>(<span class="hljs-params">ssl, line</span>) &#123;<br>        <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">NativePointer</span>(line).<span class="hljs-title function_">readCString</span>());<br>    &#125;<br>    <span class="hljs-keyword">const</span> keyLogCallback = <span class="hljs-keyword">new</span> <span class="hljs-title class_">NativeCallback</span>(keyLogger, <span class="hljs-string">&#x27;void&#x27;</span>, [<span class="hljs-string">&#x27;pointer&#x27;</span>, <span class="hljs-string">&#x27;pointer&#x27;</span>]);<br> <br>    <span class="hljs-title class_">Interceptor</span>.<span class="hljs-title function_">attach</span>(SSL_CTX_new, &#123;<br>        <span class="hljs-attr">onLeave</span>: <span class="hljs-keyword">function</span>(<span class="hljs-params">retval</span>) &#123;<br>            <span class="hljs-keyword">const</span> ssl = <span class="hljs-keyword">new</span> <span class="hljs-title class_">NativePointer</span>(retval);<br>            <span class="hljs-keyword">const</span> SSL_CTX_set_keylog_callbackFn = <span class="hljs-keyword">new</span> <span class="hljs-title class_">NativeFunction</span>(SSL_CTX_set_keylog_callback, <span class="hljs-string">&#x27;void&#x27;</span>, [<span class="hljs-string">&#x27;pointer&#x27;</span>, <span class="hljs-string">&#x27;pointer&#x27;</span>]);<br>            <span class="hljs-title function_">SSL_CTX_set_keylog_callbackFn</span>(ssl, keyLogCallback);<br>        &#125;<br>    &#125;);<br>&#125;<br><span class="hljs-title function_">startTLSKeyLogger</span>(<br>    <span class="hljs-title class_">Module</span>.<span class="hljs-title function_">findExportByName</span>(<span class="hljs-string">&#x27;libssl.so&#x27;</span>, <span class="hljs-string">&#x27;SSL_CTX_new&#x27;</span>),<br>    <span class="hljs-title class_">Module</span>.<span class="hljs-title function_">findExportByName</span>(<span class="hljs-string">&#x27;libssl.so&#x27;</span>, <span class="hljs-string">&#x27;SSL_CTX_set_keylog_callback&#x27;</span>)<br></code></pre></td></tr></table></figure>
+</li>
+<li><p>然后用frida加载运行hook</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">frida -U -l .\sslkeyfilelog.js  -f 包名<br></code></pre></td></tr></table></figure>
+
+<p><img src="/images/1203_11.jpg" srcset="/img/loading.gif" lazyload></p>
+</li>
+<li><p>在运行Frida Hook获取sslkey的同时，运行tcpdump抓包.开始在模拟器端执行各种APP中的操作，例如登录、搜索等，这些数据包都会被抓取，<font color="red">操作完毕后，在adb shell中按Ctrl c关闭tcpdump抓包</font>.最后，抓包结束后将得到的key保存到sslkey.txt，格式是下面这样的，不要掺杂别的。把抓到的capture.pcap导出来</p>
+</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">CLIENT_RANDOM 557e6dc49faec93dddd41d8c55d3a0084c44031f14d66f68e3b7fb53d3f9586d 886de4677511305bfeaee5ffb072652cbfba626af1465d09dc1f29103fd947c997f6f28962189ee809944887413d8a20<br>CLIENT_RANDOM e66fb5d6735f0b803426fa88c3692e8b9a1f4dca37956187b22de11f1797e875 65a07797c144ecc86026a44bbc85b5c57873218ce5684dc22d4d4ee9b754eb1961a0789e2086601f5b0441c35d76c448<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://ahui.blog/wp-content/uploads/2024/10/image-20241006012501305.png" srcset="/img/loading.gif" lazyload alt="image-20241006012501305"></p>
+<p><img src="https://ahui.blog/wp-content/uploads/2024/10/image-20241006012544789.png" srcset="/img/loading.gif" lazyload alt="image-20241006012544789"></p>
+<h2 id="流量分析"><a href="#流量分析" class="headerlink" title="流量分析"></a>流量分析</h2><p>wireshark下载地址：<a target="_blank" rel="noopener" href="https://www.wireshark.org/download.html">https://www.wireshark.org/download.html</a></p>
+<p>抓包完成后，用wireshark打开tcpdump抓包获得的pcap文件，在wireshark首选项-protocols-TLS中，设置 (Pre)-Master-Secret log filename为上述sslkey.txt。</p>
+<p><img src="/images/1203_14.jpg" srcset="/img/loading.gif" lazyload></p>
+<p>即可实现https流量的解密。</p>
+<p>在上述步骤中拿到了解密后的流量，我们就能对XX的流量做进一步分析了。可以看到大量向服务器请求的数据包，但其中有很多干扰的图片请求，因为修改过滤器把图片过滤一下。过滤器：<code>http &amp;&amp; tcp.dstport==443 and !(http.request.uri contains &quot;.webp&quot; or http.request.uri contains &quot;.jpg&quot; or http.request.uri contains &quot;.png&quot;)</code></p>
+<p>结果清爽了很多。</p>
+<p><img src="/images/1203_15.jpg" srcset="/img/loading.gif" lazyload></p>
+<h2 id="查看包名"><a href="#查看包名" class="headerlink" title="查看包名"></a>查看包名</h2><p>1、查看将要启动或退出app的包名</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">adb shell am monitor（只有在启动或退出的时候才会打印）<br></code></pre></td></tr></table></figure>
+
+<p>2、查看安装的第三方app的包名</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">adb shell pm list packages -3<br></code></pre></td></tr></table></figure>
+
+<p>3、查看当前界面的app的包名</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">adb shell dumpsys window windows | findstr mFocusedApp<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://ahui.blog/wp-content/uploads/2024/10/post-540-670177c858f0e." srcset="/img/loading.gif" lazyload alt="img"></p>
+<p>4、查看启动的app的包名</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">adb shell dumpsys activity top | find <span class="hljs-string">&quot;ACTIVITY&quot;</span><br></code></pre></td></tr></table></figure>
+
+<p><img src="https://ahui.blog/wp-content/uploads/2024/10/post-540-670177c858f0e." srcset="/img/loading.gif" lazyload alt="img"></p>
+<p>5、查看所有启动的应用的包名</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">adb shell dumpsys activity activities | findstr <span class="hljs-string">&quot;Run&quot;</span><br></code></pre></td></tr></table></figure>
+
+<p><img src="https://ahui.blog/wp-content/uploads/2024/10/post-540-670177c858f0e." srcset="/img/loading.gif" lazyload alt="img"></p>
+<p>6、查看当前启动应用的包名</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">adb shell dumpsys window w |findstr \/ |findstr name=<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://ahui.blog/wp-content/uploads/2024/10/post-540-670177c858f0e." srcset="/img/loading.gif" lazyload alt="img"></p>
+<p>7、通过应用查看包名</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">aapt dump badging D:\<span class="hljs-built_in">test</span>\xxx.apk(APK的全名)<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://ahui.blog/wp-content/uploads/2024/10/post-540-670177c858f0e." srcset="/img/loading.gif" lazyload alt="img"></p>
+<p>（aapt不是可运行命令的话，需要配置环境）</p>
+<p><img src="https://ahui.blog/wp-content/uploads/2024/10/post-540-670177c858f0e." srcset="/img/loading.gif" lazyload alt="img"></p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/" class="category-chain-item">解决方案</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E6%8A%93%E5%8C%85/" class="print-no-link">#抓包</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>安卓APP-HTTPS抓包Frida Hook教程</div>
+      <div>http://example.com/2024/12/23/安卓APP-HTTPS抓包Frida Hook教程/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>AnTi</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2024年12月23日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/12/18/%E4%B8%80%E6%96%87%E8%AF%BB%E6%87%82%E5%A4%A7%E6%A8%A1%E5%9E%8B%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/" title="什么是大模型？一文读懂大模型的基本概念">
+                        <span class="hidden-mobile">什么是大模型？一文读懂大模型的基本概念</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"h4axqmHCD027mddotZDIonWk-gzGzoHsz","appKey":"gGx3TzvrsJWwSRvuNxrnFIHV","path":"window.location.pathname","placeholder":null,"avatar":"monsterid","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>AnTi</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>安替</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客 
+        <span id="leancloud-site-uv"></span>
+         人
+      </span>
+    
+    
+
+  
+
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  var relativeDate = function() {
+    var updatedTime = document.getElementById('updated-time');
+    if (updatedTime) {
+      var text = updatedTime.textContent;
+      var reg = /\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:Z|[+-]\d{2}:\d{2})/;
+      var matchs = text.match(reg);
+      if (matchs) {
+        var relativeTime = moment(matchs[0]).fromNow();
+        updatedTime.textContent = text.replace(reg, relativeTime);
+      }
+      updatedTime.style.display = '';
+    }
+  };
+  Fluid.utils.createScript('https://lib.baomitu.com/moment.js/2.29.4/moment.min.js', function() {
+    if (!'zh-cn'.startsWith('en')) {
+      Fluid.utils.createScript('https://lib.baomitu.com/moment.js/2.29.4/locale/zh-cn.min.js', function() {
+        relativeDate();
+      });
+    } else {
+      relativeDate();
+    }
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
